@@ -22,7 +22,9 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    IN+
+                    <a href="#">
+                        <img alt="image" class="img-circle" src="<%= image_url 'profile_small.jpg' %>"/>
+                    </a>
                 </div>
             </li>
             <li class="<%= is_active_controller('dashboards') %>">
@@ -38,6 +40,11 @@
             <li class="<%= is_active_action('projects') %>">
                 <%= link_to appviews_projects_path do %>
                 <i class="fa fa-th-list"></i> <span class="nav-label" data-i18n="nav.appviews">All Projects</span>
+                <% end %>
+            </li>
+            <li class="<%= is_active_action('settings') %>">
+                <%= link_to appviews_settings_path do %>
+                <i class="fa fa-cog"></i> <span class="nav-label" data-i18n="nav.appviews">Settings</span>
                 <% end %>
             </li>
         </ul>

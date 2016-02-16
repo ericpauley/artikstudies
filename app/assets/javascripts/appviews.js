@@ -4,3 +4,4 @@
 //= require fullcalendar/fullcalendar.min.js
 //= require peity/jquery.peity.min.js
 //= require sparkline/jquery.sparkline.min.js
+//= require staps/jquery.steps.min.js

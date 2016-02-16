@@ -54,4 +54,6 @@ class AppviewsController < ApplicationController
   def article
   end
 
+  def settings
+  end
 end
