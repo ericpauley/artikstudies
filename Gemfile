@@ -8,6 +8,8 @@ gem 'font-awesome-rails', '4.3.0.0'
 # Use postgres as the database for Active Record
 gem 'pg'
 
+gem 'kaminari' # adds pagination to ActiveModels
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.4'
 

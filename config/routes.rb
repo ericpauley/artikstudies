@@ -134,4 +134,8 @@ Myapp::Application.routes.draw do
 
   get "landing/index"
 
+  namespace :api do
+    resources :datapoints
+  end
+
 end
