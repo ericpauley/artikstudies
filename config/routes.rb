@@ -138,4 +138,11 @@ Myapp::Application.routes.draw do
     resources :datapoints
   end
 
+
+  authenticate :user do
+    resources :probes
+  end
+  resources :studies
+
+
 end
