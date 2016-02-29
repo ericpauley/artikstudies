@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :probes, dependent: :nullify
-  has_many :studies, dependent: :nullify
+  has_one :probe, dependent: :nullify
+  has_one :own_study, dependent: :nullify, :class_name => "Study"
   belongs_to :study
 end
