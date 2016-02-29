@@ -1,54 +1,57 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
-    <div class="sidebar-collapse">
-        <ul class="nav metismenu" id="side-menu">
-            <% if user_signed_in? %>
-            <li class="nav-header">
-                <div class="dropdown profile-element">
-                    <span>
-                        <img alt="image" class="img-circle" src="<%= image_url 'profile_small.jpg' %>"/>
-                    </span>
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="clear">
-                            <span class="block m-t-xs">
-                                <strong class="font-bold"><%= current_user.name %></strong>
-                            </span> <span class="text-muted text-xs block">Researcher <b class="caret"></b></span>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="">Profile</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><%= link_to "Sign out", destroy_user_session_path%>
-                        </li>
-                    </ul>
-                </div>
-                <div class="logo-element">
-                    <a href="#">
-                        <img alt="image" class="img-circle" src="<%= image_url 'profile_small.jpg' %>"/>
-                    </a>
-                </div>
+  <div class="sidebar-collapse">
+    <ul class="nav metismenu" id="side-menu">
+      <% if user_signed_in? %>
+      <li class="nav-header">
+        <div class="dropdown profile-element">
+          <span>
+            <img alt="image" class="img-circle" src="<%= image_url 'profile_small.jpg' %>"/>
+          </span>
+          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+            <span class="clear">
+                <span class="block m-t-xs">
+                  <strong class="font-bold"><%= current_user.name %></strong>
+                </span>
+                <span class="text-muted text-xs block">Researcher <b class="caret"></b></span>
+            </span>
+          </a>
+          <ul class="dropdown-menu animated fadeInRight m-t-xs">
+            <li><a href="">Profile</a>
             </li>
-            <% end %>
-            <li class="<%= is_active_controller('dashboards') %>">
-                <%= link_to root_path do %>
-                <i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Dashboard</span>
-                <% end %>
+            <li class="divider"></li>
+            <li><%= link_to "Sign out", destroy_user_session_path%>
             </li>
-            <li class="<%= is_active_action('project_detail') %>">
-                <%= link_to appviews_project_detail_path do %>
-                <i class="fa fa-folder-open"></i> <span class="nav-label" data-i18n="nav.appviews">Your Project</span>
-                <% end %>
-            </li>
-            <li class="<%= is_active_action('projects') %>">
-                <%= link_to appviews_projects_path do %>
-                <i class="fa fa-th-list"></i> <span class="nav-label" data-i18n="nav.appviews">All Projects</span>
-                <% end %>
-            </li>
-            <li class="<%= is_active_action('settings') %>">
-                <%= link_to appviews_settings_path do %>
-                <i class="fa fa-cog"></i> <span class="nav-label" data-i18n="nav.appviews">Settings</span>
-                <% end %>
-            </li>
-        </ul>
-    </div>
+          </ul>
+        </div>
+        <div class="logo-element">
+          <a href="#">
+            <img alt="image" class="img-circle" src="<%= image_url 'profile_small.jpg' %>"/>
+          </a>
+        </div>
+      </li>
+      <% end %>
+      <li class="<%= is_active_controller('dashboards') %>">
+          <%= link_to root_path do %>
+          <i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Dashboard</span>
+          <% end %>
+      </li>
+      <% if user_signed_in? %>
+        <li class="<%= is_active_action('project_detail') %>">
+          <%= link_to studies_path do %>
+            <i class="fa fa-folder-open"></i> <span class="nav-label" data-i18n="nav.appviews">Your Project</span>
+          <% end %>
+        </li>
+      <% end %>
+      <li class="<%= is_active_controller('studies') %>">
+        <%= link_to studies_path do %>
+        <i class="fa fa-th-list"></i> <span class="nav-label" data-i18n="nav.studies">All Studies</span>
+        <% end %>
+      </li>
+      <li class="<%= is_active_controller('probes') %>">
+        <%= link_to probes_path do %>
+        <i class="fa fa-cog"></i> <span class="nav-label" data-i18n="nav.probes">Probe Settings</span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
 </nav>

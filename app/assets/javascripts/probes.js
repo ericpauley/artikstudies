@@ -1,0 +1,1 @@
+//= require staps/jquery.steps.min.js
