@@ -5,7 +5,7 @@ module Api
 
     def create
       @probe = Probe.find_by! serial_number: params.require(:serial)
-      set_resource(@probe.probe_datapoints.create(data: params.require(:data)))
+      set_resource(@probe.probe_datapoints.create(data: JSON.parse(params.require(:data))))
       if get_resource.save
         render :show, status: :created
       else

@@ -7,4 +7,5 @@ end
 
 class ProbeDatapoint < ActiveRecord::Base
   belongs_to :probe
+  serialize :data
 end
