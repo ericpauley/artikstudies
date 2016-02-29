@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_one :probe, dependent: :nullify
-  has_one :own_study, dependent: :nullify, :class_name => "Study"
+  has_one :hosted_study, dependent: :nullify, :class_name => "Study"
   belongs_to :study
 end
