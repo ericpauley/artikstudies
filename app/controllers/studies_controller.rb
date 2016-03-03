@@ -12,7 +12,7 @@ class StudiesController < ApplicationController
 
   def create
     @study = Study.new(study_params)
-    @study user_id = current_user
+    @study.user_id = current_user.id
     @study.save
     current_user.study_id = @study.id
     redirect_to action: :show, id: @study.id
