@@ -1,95 +1,105 @@
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
-      <div class="col-lg-12">
-          <div class="ibox float-e-margins">
-              <div class="ibox-title">
-                  <h5>Probe Wizzard</h5>
-                  <div class="ibox-tools">
-                      <a class="collapse-link">
-                          <i class="fa fa-chevron-up"></i>
-                      </a>
-                  </div>
-              </div>
-              <div class="ibox-content">
-                  <div id="wizard">
-                      <h1>Probe Info</h1>
-                      <div class="step-content">
-                          <div class="text-center m-t-md">
-                              <h2>Hello in Step 1</h2>
-                              <p>
-                                  This is the first content.
-                              </p>
-                          </div>
-                      </div>
-
-                      <h1>Verify</h1>
-                      <div class="step-content">
-                          <div class="text-center m-t-md">
-                              <h2>This is step 2</h2>
-                              <p>
-                                  This content is diferent than the first one.
-                              </p>
-                          </div>
-                      </div>
-
-                      <h1>Success</h1>
-                      <div class="step-content">
-                          <div class="text-center m-t-md">
-                              <h2>This is step 3</h2>
-                              <p>
-                                  This is last content.
-                              </p>
-                          </div>
-                      </div>
-                  </div>
-
-              </div>
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>Probe Wizzard</h5>
+          <div class="ibox-tools">
+            <a class="collapse-link">
+              <i class="fa fa-chevron-up"></i>
+            </a>
           </div>
-      </div>
-  </div>
-
-  <div class="row">
-      <div class="col-lg-12">
-          <div class="ibox float-e-margins">
-              <div class="ibox-title">
-                  <h5>{Probe Name Settings}</h5>
-                  <div class="ibox-tools">
-                      <a class="collapse-link">
-                          <i class="fa fa-chevron-up"></i>
-                      </a>
-                  </div>
-              </div>
-              <div class="ibox-content">
-                <div class="setings-item">
-                    <span>
-                        Enable Probe
-                    </span>
-                    <div class="switch">
-                        <div class="onoffswitch">
-                            <input type="checkbox" name="collapsemenu" checked class="onoffswitch-checkbox" id="example2">
-                            <label class="onoffswitch-label" for="example2">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
+        </div>
+        <div class="ibox-content">
+          <div id="wizard">
+            <h1>Serial Number</h1>
+            <div class="step-content">
+              <div class="text-center m-t-md form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Enter Serial Number</label>
+                  <div class="col-sm-10"><input type="text" class="form-control"></div>
                 </div>
               </div>
+            </div>
+
+            <h1>Verify</h1>
+            <div class="step-content">
+              <div class="text-center m-t-md">
+                <div class="sk-spinner sk-spinner-chasing-dots">
+                  <div class="sk-dot1"></div>
+                  <div class="sk-dot2"></div>
+                </div>
+                <p>
+                  Verifying connection... Please power on your board.
+                </p>
+              </div>
+            </div>
+
+            <h1>Success</h1>
+            <div class="step-content">
+              <div class="text-center m-t-md">
+                <h2>Successfully Connected!</h2>
+                <p>
+                  Your probe connection was successfully established.
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+        <h5>Probe Settings</h5>
+          <div class="ibox-tools">
+            <a class="collapse-link">
+              <i class="fa fa-chevron-up"></i>
+            </a>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="setings-item">
+            <span>
+              <strong>Serial #:</strong> {12345}
+            </span>
+          </div>
+          <div class="setings-item">
+            <span>
+              Enable Probe
+            </span>
+            <div class="switch">
+              <div class="onoffswitch">
+                <input type="checkbox" name="collapsemenu" checked class="onoffswitch-checkbox" id="example2">
+                <label class="onoffswitch-label" for="example2">
+                  <span class="onoffswitch-inner"></span>
+                  <span class="onoffswitch-switch"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="setings-item">
+            <button type="button" class="btn btn-w-m btn-danger">Destroy Probe Connection</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <% content_for :javascript do %>
-    <script type="text/javascript">
+  <script type="text/javascript">
 
 
-    $(function() {
+  $(function() {
 
-        $("#wizard").steps();
+    $("#wizard").steps();
 
-    });
+  });
 
-    </script>
+  </script>
 <% end %>
 
