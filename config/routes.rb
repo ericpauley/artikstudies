@@ -8,6 +8,9 @@ Myapp::Application.routes.draw do
 
   namespace :api do
     resources :datapoints
+    authenticate :user do
+      resources :probes
+    end
   end
 
 
