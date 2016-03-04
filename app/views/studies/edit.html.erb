@@ -1,4 +1,4 @@
-<%= form_for @study, url: {action: "create"} do |f| %>
+<%= form_for @study, url: {action: "update"}, method: "patch" do |f| %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>

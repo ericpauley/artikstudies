@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303052405) do
+ActiveRecord::Schema.define(version: 20160304050255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "instructions", force: :cascade do |t|
+    t.string  "name"
+    t.text    "description"
+    t.integer "study_id"
+  end
+
+  add_index "instructions", ["study_id"], name: "index_instructions_on_study_id", using: :btree
 
   create_table "probe_datapoints", force: :cascade do |t|
     t.integer  "probe_id",   null: false
@@ -29,13 +37,12 @@ ActiveRecord::Schema.define(version: 20160303052405) do
   end
 
   create_table "studies", force: :cascade do |t|
-    t.string   "name",         null: false
+    t.string   "name",        null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "start"
     t.datetime "end"
-    t.text     "instructions"
     t.text     "description"
   end
 
@@ -62,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160303052405) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["study_id"], name: "index_users_on_study_id", using: :btree
 
+  add_foreign_key "instructions", "studies"
   add_foreign_key "studies", "users"
   add_foreign_key "users", "studies"
 end

@@ -8,6 +8,26 @@ class StudiesController < ApplicationController
 
   def new
     @study = Study.new
+    4.times { @study.instructions.build}
+  end
+
+  def edit
+    @study = Study.find(params[:id])
+    if @study.user != current_user
+      redirect_to "/"
+      return
+    end
+    4.times { @study.instructions.build}
+  end
+
+  def update
+    @study = Study.find(params[:id])
+    if @study.user != current_user
+      redirect_to "/"
+      return
+    end
+    @study.update(study_params)
+    redirect_to action: :show, id: @study.id
   end
 
   def create
@@ -24,7 +44,7 @@ class StudiesController < ApplicationController
 
   private
   def study_params
-    params.require(:study).permit(:name, :start, :end, :description)
+    params.require(:study).permit(:name, :start, :end, :description, instructions_attributes: [:id, :name, :description])
   end
 
 end

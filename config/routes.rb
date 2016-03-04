@@ -17,6 +17,8 @@ Myapp::Application.routes.draw do
   authenticate :user do
     resources :probes
   end
-
-  resources :studies
+  authenticate :user do
+    resources :studies, only: [:create, :new, :edit, :update]
+  end
+  resources :studies, only: [:show, :index]
 end
