@@ -18,7 +18,12 @@ Myapp::Application.routes.draw do
     resources :probes
   end
   authenticate :user do
-    resources :studies, only: [:create, :new, :edit, :update]
+    resources :studies, only: [:create, :new, :edit, :update] do
+      member do
+        post 'join'
+        post 'leave'
+      end
+    end
   end
   resources :studies, only: [:show, :index]
 end

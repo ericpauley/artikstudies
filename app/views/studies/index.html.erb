@@ -27,28 +27,33 @@
                     <% if study.is_active%>
                       <span class="label label-primary">Active</span>
                     <%end%>
+                    <% if current_user and current_user.study == study%>
+                      <span class="label label-primary">Joined</span>
+                    <%end%>
                   </td>
                   <td class="project-title">
                     <a href="<%= url_for :controller => 'studies', :action => 'show', :id => study.id %>"><%= study.name %></a>
                     <br />
-                    <small>Created 14.08.2014</small>
+                    <small>Created <%= study.created_at.to_date.to_s :ordinal%></small>
                   </td>
                   <td class="project-completion">
-                    <small>Completion with: 48%</small>
+                    <% if study.is_active%>
+                    <small><strong><%= study.percent_done %>%</strong> Completed</small>
                     <div class="progress progress-mini">
-                      <div style="width: 48%;" class="progress-bar"></div>
+                      <div style="width: <%= study.percent_done %>%;" class="progress-bar"></div>
                     </div>
+                    <% end %>
                   </td>
                   <td class="project-people">
-                    <a href=""><img alt="image" class="img-circle" src="<%= image_path('a3.jpg') %>"></a>
-                    <a href=""><img alt="image" class="img-circle" src="<%= image_path('a1.jpg') %>"></a>
-                    <a href=""><img alt="image" class="img-circle" src="<%= image_path('a2.jpg') %>"></a>
-                    <a href=""><img alt="image" class="img-circle" src="<%= image_path('a4.jpg') %>"></a>
-                    <a href=""><img alt="image" class="img-circle" src="<%= image_path('a5.jpg') %>"></a>
+                    <strong><%= study.users.count %></strong> <%= "participant".pluralize(study.users.count) %>
                   </td>
                   <td class="project-actions">
-                    <a href="<%= url_for :controller => 'studies', :action => 'show', :id => study.id %>" class="btn btn-white btn-sm"><i class="fa fa-folder"></i> View </a>
-                    <% if study.user == current_user %><a href="#" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a><%end%>
+                    <% if study.user == current_user %>
+                    <a href="<%= url_for :controller => :studies, :action => :edit, :id => study.id %>" class="btn btn-white btn-sm"><i class="fa fa-pencil"></i> Edit </a>
+                    <%end%>
+                    <%= link_to study, class:"btn btn-white btn-sm" do %>
+                      <i class="fa fa-folder"></i> View
+                    <%end%>
                   </td>
                 </tr>
               <% end %>

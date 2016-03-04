@@ -19,12 +19,30 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="m-b-md">
-            <a href="#" class="btn btn-white btn-xs pull-right">Edit project</a>
+            <% if current_user == @study.user %>
+            <%= link_to "Edit Study", {controller: :studies, action: :edit}, class: "btn btn-white btn-xs pull-right" %>
+            <%end%>
+            <% if current_user.study == @study %>
+            <%= button_to "Leave Study", {controller: :studies, action: :leave}, class: "btn btn-white btn-xs pull-right" %>
+            <%end%>
+            <% if current_user.study == nil %>
+            <%= button_to "Join Study", {controller: :studies, action: :join}, class: "btn btn-white btn-xs pull-right" %>
+
+            <%end%>
             <h2><%= @study.name %></h2>
         </div>
         <dl class="dl-horizontal">
             <dt>Status:</dt>
-            <dd><span class="label label-primary">Active</span></dd>
+            <dd>
+              <% if @study.is_active%>
+                <span class="label label-primary">Active</span>
+              <% else %>
+                <span class="label label-warning">Inactive</span>
+              <%end%>
+              <% if current_user and current_user.study == @study%>
+                <span class="label label-primary">Joined</span>
+              <%end%>
+            </dd>
         </dl>
     </div>
 </div>
@@ -46,33 +64,31 @@
         <dl class="dl-horizontal">
 
             <dt>Last Updated:</dt>
-            <dd>  <%= @study.updated_at %> </dd>
+            <dd>  <%= @study.updated_at.to_date%> </dd>
             <dt>Created:</dt>
-            <dd> 	<%= @study.created_at %> </dd>
+            <dd> 	<%= @study.created_at.to_date%> </dd>
             <dt>Participants:</dt>
-            <dd class="project-people">
-                <a href=""><img alt="image" class="img-circle" src="<%= image_path('a3.jpg') %>"></a>
-                <a href=""><img alt="image" class="img-circle" src="<%= image_path('a1.jpg') %>"></a>
-                <a href=""><img alt="image" class="img-circle" src="<%= image_path('a2.jpg') %>"></a>
-                <a href=""><img alt="image" class="img-circle" src="<%= image_path('a4.jpg') %>"></a>
-                <a href=""><img alt="image" class="img-circle" src="<%= image_path('a5.jpg') %>"></a>
+            <dd>
+                <%= @study.users.count %>
             </dd>
         </dl>
     </div>
 </div>
+<% if @study.is_active %>
 <div class="row">
     <div class="col-lg-12">
         <dl class="dl-horizontal">
             <dt>Completed:</dt>
             <dd>
                 <div class="progress progress-striped active m-b-sm">
-                    <div style="width: 60%;" class="progress-bar"></div>
+                    <div style="width: <%= @study.percent_done %>%;" class="progress-bar"></div>
                 </div>
-                <small>Project completed in <strong>60%</strong>. Remaining close the project, sign a contract and invoice.</small>
+                <small>Study is <strong><%= @study.percent_done %>%</strong> completed.</small>
             </dd>
         </dl>
     </div>
 </div>
+<% end %>
 <div class="row m-t-sm">
 <div class="col-lg-12">
 <div class="panel blank-panel">

@@ -34,8 +34,28 @@ class StudiesController < ApplicationController
     @study = Study.new(study_params)
     @study.user_id = current_user.id
     @study.save
-    current_user.study_id = @study.id
+    current_user.study = @study
     redirect_to action: :show, id: @study.id
+  end
+
+  def join
+    if !current_user.study
+      @study = Study.find(params[:id])
+      current_user.study = @study
+      current_user.save
+      redirect_to action: :show, id: @study.id
+    else
+      redirect_to "/"
+    end
+  end
+
+  def leave
+    @study = Study.find(params[:id])
+    if current_user.study == @study
+      current_user.study = nil
+      current_user.save
+      redirect_to action: :show, id: @study.id
+    end
   end
 
   def show

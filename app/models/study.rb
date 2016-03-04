@@ -5,7 +5,11 @@ class Study < ActiveRecord::Base
   accepts_nested_attributes_for :instructions, reject_if: :all_blank
 
   def is_active
-    self.end != nil and Time.now < self.end
+    self.end != nil and Time.now < self.end and self.start != nil and Time.now > self.start
+  end
+
+  def percent_done
+    ((Time.now-self.start)/(self.end-self.start)*100).round
   end
 end
 
